@@ -5,8 +5,15 @@
         <title>Symfony embedded render</title>
     </head>
     <body>
+    <h1>Symfony embedded render with mode {{ mode|default('include') }}</h1>
+    {% if mode|default == 'controller' %}
         {{ render(controller('App\\Controller\\WidgetController:widget')) }}
         {{ render(controller('App\\Controller\\WidgetController:widget')) }}
         {{ render(controller('App\\Controller\\WidgetController:widget')) }}
+    {% else %}
+        {% include 'widget.html.twig' with {number:random()} %}
+        {% include 'widget.html.twig' with {number:random()} %}
+        {% include 'widget.html.twig' with {number:random()} %}
+    {% endif %}
     </body>
 </html>
