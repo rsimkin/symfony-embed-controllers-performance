@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Symfony embedded render</title>
+    </head>
+    <body>
+        {{ render(controller('App\\Controller\\WidgetController:widget')) }}
+        {{ render(controller('App\\Controller\\WidgetController:widget')) }}
+        {{ render(controller('App\\Controller\\WidgetController:widget')) }}
+    </body>
+</html>
