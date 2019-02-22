@@ -10,11 +10,15 @@ class DefaultController extends AbstractController
 {
     public function index(Request $request): Response
     {
-    	$stratTime = microtime(true);
-    	$response = $this->render('base.html.twig', ['mode' => $request->get('mode')]);
+    	$startTime = microtime(true);
+    	$mode = $request->get('mode') ?? 'include';
+    	$response = $this->render(
+    	    sprintf('by_%s.html.twig', $mode),
+            ['mode' => $mode]
+        );
     	file_put_contents(
-    		'/root/symfony-embed-controllers-performance/timing.txt',
-    		sprintf('%s %f', $request->get('mode'), microtime(true) - $stratTime) . PHP_EOL,
+    		$_SERVER['DOCUMENT_ROOT'] . '/time.txt',
+    		sprintf('%s %f', $request->get('mode'), microtime(true) - $startTime) . PHP_EOL,
     		FILE_APPEND 
     	);
 
